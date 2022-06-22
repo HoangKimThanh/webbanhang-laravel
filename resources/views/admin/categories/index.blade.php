@@ -1,4 +1,4 @@
-@extends('admin.pages.main')
+@extends('admin.layout.main')
 
 @section('content')
     <p>

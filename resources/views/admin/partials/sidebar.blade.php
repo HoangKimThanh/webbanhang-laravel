@@ -4,7 +4,7 @@
             <div class="admin-content-left">
                 <ul>
                     <li>
-                        <a href=""><i class="fas fa-chart-line"></i> Dashboard</a>
+                        <a href="{{ route('admin.index') }}"><i class="fas fa-chart-line"></i> Dashboard</a>
                     </li>
                     <li>
                         <a href="#"><i class="fas fa-thumbtack"></i> Danh mục sản phẩm</a>
@@ -16,8 +16,8 @@
                     <li>
                         <a href="#"><i class="fa-solid fa-laptop"></i> Sản phẩm</a>
                         <ul>
-                            <li><a href="">Thêm sản phẩm</a></li>
-                            <li><a href="">Danh sách sản phẩm</a></li>
+                            <li><a href="{{ route('products.create') }}">Thêm sản phẩm</a></li>
+                            <li><a href="{{ route('products.index') }}">Danh sách sản phẩm</a></li>
                         </ul>
                     </li>
                     <li>

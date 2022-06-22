@@ -11,6 +11,7 @@
         <link href="{{ asset('backend/css/styles.css') }}" rel="stylesheet" />
         <link href="{{ asset('backend/css/custom.css') }}" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+        <script src="http://cdn.ckeditor.com/4.19.0/standard/ckeditor.js"></script>
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
