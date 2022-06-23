@@ -29,7 +29,8 @@ class StoreCategoryRequest extends FormRequest
                 'required',
                 'string',
                 'unique:App\Models\Category,name',
-            ]
+            ],
+            'url' => 'required'
         ];
     }
 

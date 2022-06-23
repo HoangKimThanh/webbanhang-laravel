@@ -57,7 +57,7 @@
             <br>
 
             Đổi ảnh đại diện
-            <input type="file" name="image_new">
+            <input type="file" name="image_main">
             <br>
             <br>
 
@@ -70,7 +70,7 @@
             <br>
 
             Đổi ảnh mô tả (chọn lại các ảnh)
-            <input type="file" name="images[]" multiple>
+            <input type="file" name="images_description[]" multiple>
 
             <br>
             <br>

@@ -29,6 +29,8 @@
             <input required type="text" name="name" placeholder="Nhập tên sản phẩm" value="{{ old('name') }}">
             <br>
 
+            <input type="hidden" name="url" value="1">
+
             Chi tiết
             <textarea name="detail" cols="30" id="detail" rows="10" placeholder="Nhập chi tiết">{{ old('detail') }}</textarea>
             <br>

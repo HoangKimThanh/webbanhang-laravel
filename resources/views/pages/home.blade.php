@@ -18,6 +18,36 @@
             </div>
         </div>
 
+        <div class="top-products">
+            <h3>Sản phẩm nổi bật</h3>
+            <ul class="autoWidth cs-hidden">
+                @foreach ($featuredProducts as $featuredProduct)
+                    <li>
+                        <a href="{{ route('products.show', [$featuredProduct->url, $featuredProduct->id]) }}" class="product">
+                            <div class="box-img">
+                                <img class="product__image"
+                                    src="{{ asset('img/uploads/' . $featuredProduct->image_main) }}" alt="">
+                            </div>
+                            <div class="product__detail">
+                                <h4 class="product__name">{{ $featuredProduct->name }}</h4>
+                                <div class="product__price">
+                                    <span class="@if ( $featuredProduct->new_price ) product__price-old @endif">
+                                        {{ $featuredProduct->old_price }}
+                                    </span>
+
+                                    @if ($featuredProduct->new_price)
+                                        <span
+                                            class="product__price-current highlight">{{ $featuredProduct->new_price }}</span>
+                                    @endif
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                @endforeach
+            </ul>
+            <a href="cua-hang" class="btn">Xem thêm</a>
+        </div>
+
         <div class="top-news">
             <h3>Tin tức nổi bật</h3>
             <ul class="autoWidth cs-hidden">

@@ -12,10 +12,11 @@
                 </ul>
             </div>
         @endif
-        
+
         <form method="post" action="{{ route('categories.store') }}">
             @csrf
             <input type="text" name="name" placeholder="Nhập tên danh mục" value="{{ old('name') }}">
+            <input type="hidden" name="url" value="1">
             <br>
             <button type="submit" name="submit" value="submit">Thêm</button>
         </form>

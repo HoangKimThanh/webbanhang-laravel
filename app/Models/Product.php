@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use App\Services\UrlService;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Product extends Model
 {
@@ -14,6 +16,7 @@ class Product extends Model
     protected $fillable = [
         'category_id',
         'name',
+        'url',
         'detail',
         'description',
         'old_price',
@@ -23,18 +26,50 @@ class Product extends Model
         'featured',
     ];
 
+    public function getOldPriceAttribute()
+    {
+        return number_format($this->attributes['old_price']) . 'đ';
+    }
+
+    public function getNewPriceAttribute()
+    {
+        if ($this->attributes['new_price'])
+            return number_format($this->attributes['new_price']) . 'đ';
+    }
+
+    public function setUrlAttribute($value)
+    {
+        $this->attributes['url'] = UrlService::makeUrl($this->attributes['name']);
+    }
+
     public function setFeaturedAttribute($value)
     {
-        $this->attributes['featured'] = $value ? 1 : 0;
+        $this->attributes['featured'] = 1;
     }
 
     public function getImagesDescriptionAttribute()
     {
         return explode(' ', $this->attributes['images_description']);
     }
-
-    public function getDetailAttribute()
+    
+    public function getUrlProductAttribute()
     {
-        return nl2br($this->attributes['detail']);
+        return UrlService::makeUrl($this->name);
+    }
+
+    public static function getWithCategory()
+    {
+        return Product::join('categories', 'products.category_id', '=', 'categories.id')
+        ->get(['products.*', 'categories.name as category_name']);
+    }
+
+    public static function getFeaturedProducts()
+    {
+        return Product::whereFeatured(1)->get();
+    }
+
+    public static function getByCategory($selectedCategory)
+    {
+        return Product::where('category_id', '=', $selectedCategory->id)->paginate(2);
     }
 }

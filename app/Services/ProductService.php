@@ -2,8 +2,9 @@
 
 namespace App\Services;
 
-class ProductService {
-    public function handleUploadedImage($image)
+class ProductService
+{
+    public static function handleUploadedImage($image)
     {
         if (!is_null($image)) {
             $imageName = date('Y-m-d-H-i-s') . str_replace(' ', '-', $image->getClientOriginalName());
@@ -15,7 +16,7 @@ class ProductService {
         return null;
     }
 
-    public function handleMultipleImages($images)
+    public static function handleMultipleImages($images)
     {
         $images_description = "";
         if (!is_null($images)) {
@@ -23,7 +24,10 @@ class ProductService {
                 $imageName = date('Y-m-d-H-i-s') . str_replace(' ', '-', $image->getClientOriginalName());
                 $image->move(public_path('img/uploads'), $imageName);
 
-                $images_description .= $imageName . " ";
+                if ($images_description === "")
+                    $images_description .= $imageName;
+                else
+                    $images_description .= " " . $imageName;
             }
         }
 

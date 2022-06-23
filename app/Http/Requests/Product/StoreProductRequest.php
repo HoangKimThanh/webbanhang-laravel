@@ -30,6 +30,7 @@ class StoreProductRequest extends FormRequest
                 'required',
                 'unique:App\Models\Product,name',
             ],
+            'url' => 'required',
             'detail' => 'required',
             'description' => 'required',
             'old_price' => [

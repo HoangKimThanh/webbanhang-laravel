@@ -33,14 +33,14 @@
             <div class="grid wide">
                 <div class="header" id="header">
                     <!-- Logo on mobile and tablet -->
-                    <a href="./trang-chu" class="logo-on-tablet hide-on-pc hide-on-mobile">
+                    <a href="{{ route('home') }}" class="logo-on-tablet hide-on-pc hide-on-mobile">
                         <img src="{{ asset('img/logo.png') }}" alt="">
                     </a>
                     <nav class="header-nav">
                         <ul>
                             <!-- Logo on pc -->
                             <li class="logo">
-                                <a href="./trang-chu">
+                                <a href="{{ route('home') }}">
                                     <img src="{{ asset('img/logo.png') }}" alt="">
                                 </a>
                             </li>
@@ -79,7 +79,7 @@
                                         // }
                                         ?>
                                         <li><a href="./gioi-thieu">GIỚI THIỆU</a></li>
-                                        <li><a href="./cua-hang">PHỤ KIỆN MÁY TÍNH</a></li>
+                                        <li><a href="{{ route('products') }}">PHỤ KIỆN MÁY TÍNH</a></li>
                                         <!-- <?php
                                         //$result = get_all_product_categories($conn);
                                         //$num_rows = mysqli_num_rows($result);
@@ -127,7 +127,7 @@
                             <li class="others">
                                 <ul class="others-list">
                                     <li class="hide-on-mobile">
-                                        <form method="get" action="./tim-kiem" class="header-search">
+                                        <form method="get" action="{{ route('products.search') }}" class="header-search">
                                             <input name="q" type="text" placeholder="Tìm kiếm sản phẩm"
                                                 title="Tìm kiếm sản phẩm">
                                             <button type="submit" title="Tìm kiếm">

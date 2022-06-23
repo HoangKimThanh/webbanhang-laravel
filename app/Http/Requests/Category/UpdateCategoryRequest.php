@@ -30,7 +30,8 @@ class UpdateCategoryRequest extends FormRequest
                 'required',
                 'string',
                 Rule::unique('categories', 'name')->ignore($this->category),
-            ]
+            ],
+            'url',
         ];
     }
 

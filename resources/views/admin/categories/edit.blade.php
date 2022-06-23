@@ -12,7 +12,7 @@
                 </ul>
             </div>
         @endif
-        
+
         <form method="post" action="{{ route('categories.update', $category) }}">
             @csrf
             @method('PUT')

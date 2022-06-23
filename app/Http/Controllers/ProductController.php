@@ -2,138 +2,44 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Product\StoreProductRequest;
-use App\Http\Requests\Product\UpdateProductRequest;
-use App\Models\Product;
 use App\Models\Category;
-use App\Services\ProductService;
+use App\Models\Product;
+use App\Services\UrlService;
+use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    private $productService;
-
-    public function __construct()
+    public function index(Request $request)
     {
-        $this->productService = new ProductService();
-    }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $products = Product::join('categories', 'products.category_id', '=', 'categories.id')
-            ->get(['products.*', 'categories.name as category_name']);
+        $selectedCategory = Category::whereUrl($request->category_url)->first();
+        $products = $selectedCategory ? Product::getByCategory($selectedCategory) : Product::paginate(2);
+        $categories = Category::getTotalPerCategory();
+        $totalProducts = Product::count();
 
-        return view('admin.products.index', data: [
-            'products' => $products,
-        ]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        $categories = Category::all();
-        return view('admin.products.create', data: [
-            'categories' => $categories,
-        ]);
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\Product\StoreProductRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreProductRequest $request)
-    {
-        $product = new Product();
-        $product->fill($request->validated());
-
-        $imageMain = $this->productService->handleUploadedImage($request->file('image_main'));
-        $product->image_main = $imageMain;
-
-        $imagesDescription = $this->productService->handleMultipleImages($request->file('images_description'));
-        $product->images_description = $imagesDescription;
-
-        $product->save();
-
-        return redirect()->route('products.index');
-    }
-
-    public function showFilter()
-    {
-        $products = Product::get();
-        $categories = Category::get();
-
-        return view('pages.product', data: [
+        return view('pages.products', data: [
             'products' => $products,
             'categories' => $categories,
+            'total_products' => $totalProducts,
+            'selectedCategory' => $selectedCategory,
         ]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Product $product)
+    public function show(Request $request)
     {
-        //
+        $product = Product::find($request->product_id);
+        return view('pages.product-detail', data: [
+            'product' => $product,
+        ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Product $product)
+    public function search(Request $request)
     {
-        $categories = Category::all();
+        $search = $request->q;
+        $products = Product::where('name', 'LIKE', '%' . $search . '%')->get();
 
-        return view('admin.products.edit', compact('categories', 'product'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\Product\UpdateProductRequest  $request
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateProductRequest $request, Product $product)
-    {
-        $product->fill($request->validated());
-
-        $imageMain = $this->productService->handleUploadedImage($request->file('image_main'));
-        $product->image_main = $imageMain ?? $product->image_main;
-
-        $imagesDescription = $this->productService->handleMultipleImages($request->file('images_description'));
-        $product->images_description = $imagesDescription ?? $product->images_description;
-
-
-        $product->save();
-
-        return redirect()->route('products.index');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Product $product)
-    {
-        $product->delete();
-
-        return redirect()->route('products.index');
+        return view('pages.products-search', data: [
+            'products' => $products,
+            'search' => $search,
+        ]);
     }
 }

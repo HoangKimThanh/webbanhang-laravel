@@ -17,13 +17,14 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->foreignId('category_id')->constrained('categories');
             $table->string('name', 100)->unique();
+            $table->string('url', 100);
             $table->longText('detail');
             $table->longText('description');
             $table->integer('old_price');
             $table->integer('new_price')->nullable();
             $table->string('image_main', 255);
-            $table->string('images_description', 255);
-            $table->boolean('featured');
+            $table->longText('images_description');
+            $table->boolean('featured')->default(0);
         });
     }
 

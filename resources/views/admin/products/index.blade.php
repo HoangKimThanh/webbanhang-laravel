@@ -41,17 +41,14 @@
                             <td>{{ $product->name }}</td>
                             <td>{{ $product->old_price }}</td>
                             <td>{{ $product->new_price }}</td>
-                            <td><img src="{{ asset('img/uploads/'.$product->image_main) }}" alt=""></td>
+                            <td><img src="{{ asset('img/uploads/' . $product->image_main) }}" alt=""></td>
                             <td>
-                                <a class="btn btn-primary" href="{{ route('products.edit', $product) }}">Sửa</a> | 
-                                <form 
-                                    style="display: inline-block" 
-                                    action="{{ route('products.destroy', $product) }}" 
-                                    method="POST"
-                                >
+                                <a class="btn btn-primary" href="{{ route('products.edit', $product) }}">Sửa</a> |
+                                <form style="display: inline-block" action="{{ route('products.destroy', $product) }}"
+                                    method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button class="btn btn-danger" >Delete</button>
+                                    <button class="btn btn-danger">Delete</button>
                                 </form>
                             </td>
                         </tr>
