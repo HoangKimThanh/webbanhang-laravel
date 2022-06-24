@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -10,15 +9,15 @@ class LoginController extends Controller
 {
     public function login()
     {
-        return view('admin.login');
+        return view('pages.login');
     }
 
     public function auth(Request $request)
     {
         $credentials = $request->only(['email', 'password']);
 
-        if (Auth::guard('admin')->attempt($credentials)) {
-            return redirect()->route('admin.dashboard');
+        if (Auth::guard('web')->attempt($credentials)) {
+            return view('pages.user.profile');
         } else {
             return redirect()->back()->withInput();
         }

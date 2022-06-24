@@ -1,4 +1,4 @@
-@extends('admin.layout.main');
+@extends('admin.layouts.main');
 
 @section('content')
     <p><a href="{{ route('products.create') }}">Thêm sản phẩm</a></p>

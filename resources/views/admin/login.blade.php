@@ -23,7 +23,7 @@
                                         <form method="post" action={{ route('admin.auth') }}>
                                             @csrf
                                             <div class="form-floating mb-3">
-                                                <input name="email" class="form-control" id="inputEmail" type="text" placeholder="name@example.com" />
+                                                <input name="email" class="form-control" id="inputEmail" type="text" placeholder="name@example.com" value="{{ old('email') }}"/>
                                                 <label for="inputEmail">Email</label>
                                             </div>
                                             <div class="form-floating mb-3">
