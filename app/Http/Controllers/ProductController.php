@@ -11,7 +11,7 @@ class ProductController extends Controller
 {
     public function index(Request $request)
     {
-        $selectedCategory = Category::whereUrl($request->category_url)->first();
+        $selectedCategory = Category::whereId($request->category_id)->first();
         $products = $selectedCategory ? Product::getByCategory($selectedCategory) : Product::paginate(2);
         $categories = Category::getTotalPerCategory();
         $totalProducts = Product::count();

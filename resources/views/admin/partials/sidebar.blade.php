@@ -4,7 +4,7 @@
             <div class="admin-content-left">
                 <ul>
                     <li>
-                        <a href="{{ route('admin.index') }}"><i class="fas fa-chart-line"></i> Dashboard</a>
+                        <a href="{{ route('admin.dashboard') }}"><i class="fas fa-chart-line"></i> Dashboard</a>
                     </li>
                     <li>
                         <a href="#"><i class="fas fa-thumbtack"></i> Danh mục sản phẩm</a>
