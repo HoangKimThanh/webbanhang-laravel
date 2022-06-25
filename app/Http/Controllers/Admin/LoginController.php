@@ -10,6 +10,9 @@ class LoginController extends Controller
 {
     public function login()
     {
+        if (Auth::guard('admin')->check()) {
+            return redirect()->route('admin.dashboard');
+        }
         return view('admin.login');
     }
 
@@ -22,5 +25,11 @@ class LoginController extends Controller
         } else {
             return redirect()->back()->withInput();
         }
+    }
+
+    public function logout()
+    {
+        Auth::guard('admin')->logout();
+        return redirect()->route('admin.login');
     }
 }

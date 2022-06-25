@@ -78,7 +78,7 @@
                                         //     </li>';
                                         // }
                                         ?>
-                                        <li><a href="./gioi-thieu">GIỚI THIỆU</a></li>
+                                        <li><a href="{{ route('intro') }}">GIỚI THIỆU</a></li>
                                         <li><a href="{{ route('products') }}">PHỤ KIỆN MÁY TÍNH</a></li>
                                         <!-- <?php
                                         //$result = get_all_product_categories($conn);
@@ -118,8 +118,8 @@
                                                 <li><a href="./products.php">Sandal</a></li>
                                             </ul>
                                         </li> -->
-                                        <li><a href="./tin-tuc">TIN TỨC</a></li>
-                                        <li><a href="./lien-he">LIÊN HỆ</a></li>
+                                        <li><a href="{{ route('news') }}">TIN TỨC</a></li>
+                                        <li><a href="{{ route('contact') }}">LIÊN HỆ</a></li>
                                     </ul>
                                 </div>
                             </li>
@@ -127,7 +127,8 @@
                             <li class="others">
                                 <ul class="others-list">
                                     <li class="hide-on-mobile">
-                                        <form method="get" action="{{ route('products.search') }}" class="header-search">
+                                        <form method="get" action="{{ route('products.search') }}"
+                                            class="header-search">
                                             <input name="q" type="text" placeholder="Tìm kiếm sản phẩm"
                                                 title="Tìm kiếm sản phẩm">
                                             <button type="submit" title="Tìm kiếm">
@@ -141,34 +142,30 @@
                                         </a>
                                     </li>
                                     <li class="hide-on-mobile user__item">
-                                        {{-- <?php //if($isLogged) {
-                                        ?>
+                                        @if (Auth::guard('user')->check())
                                             <a>
                                                 <i class="fas fa-user"></i>
                                                 <i class="fas fa-caret-down"></i>
                                             </a>
                                             <ul class="user__info">
                                                 <li class="user__info-item">
-                                                    <a href="./thong-tin-ca-nhan" classss="user__info-item-link">Tài khoản của tôi</a>
+                                                    <a href="./thong-tin-ca-nhan" classss="user__info-item-link">Tài
+                                                        khoản
+                                                        của tôi</a>
                                                 </li>
                                                 <li class="user__info-item">
-                                                    <a href="./lich-su-mua-hang" class="user__info-item-link">Đơn đã mua</a>
+                                                    <a href="./lich-su-mua-hang" class="user__info-item-link">Đơn đã
+                                                        mua</a>
                                                 </li>
                                                 <li class="user__info-item user__info-item--modifier">
-                                                    <a href="./dang-xuat" class="user__info-item-link">Đăng xuất</a>
+                                                    <a href="{{ route('user.logout') }}" class="user__info-item-link">Đăng xuất</a>
                                                 </li>
                                             </ul>
-                                        <?php
-                                        //} else {
-                                        ?>
-                                            <a href="./dang-nhap">
+                                        @else
+                                            <a href="{{ route('login') }}">
                                                 Đăng nhập/Đăng ký
                                             </a>
-                                        <?php } ?> --}}
-
-                                        <!-- <a href=''>
-                                            <i class='fas fa-sign-out-alt' title='Đăng xuất'></i>
-                                        </a> -->
+                                        @endif
                                     </li>
 
                                     <!-- Cart thumbnail -->
@@ -190,7 +187,7 @@
 
                                             <p class="cart__list-header">Sản Phẩm Mới Thêm</p>
                                             {{-- <ul class="cart__list-list">
-                                                <?php// foreach($_SESSION['cart'] as $each) { ?> ?>
+                                                <?php// foreach($_SESSION['cart'] as $each) { ?> ?> ?> ?> ?>
                                                 <li class="cart__list-item" data-id="<?php //echo $each['id']
                                                 ?>">
                                                     <a href="product_detail.php?id=<?php //echo $each['id']
@@ -207,7 +204,7 @@
                                                                     <span class="cart__list-item-cost highlight"><?php //echo $each['new_price'];
                                                                     ?></span>
                                                                     <span class="cart__list-item-multiply">x</span>
-                                                                    <span class="cart__list-item-quanlity"><?php// echo $each['quantity']; ?> ?></span>
+                                                                    <span class="cart__list-item-quanlity"><?php// echo $each['quantity']; ?> ?> ?> ?> ?></span>
                                                                     
                                                                 </div>
                                                             </div>

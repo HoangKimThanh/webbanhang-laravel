@@ -23,6 +23,9 @@ Route::post('/login', [LoginController::class, 'auth'])->name('admin.auth');
 
 Route::middleware('auth:admin')->group(function () {
     Route::get('/', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+    Route::get('/logout', [LoginController::class, 'logout'])->name('admin.logout');
+    Route::get('/account', [AdminController::class, 'edit'])->name('admin.edit');
+    Route::put('/account', [AdminController::class, 'update'])->name('admin.update');
     Route::resource('categories', CategoryController::class)->except(['show']);
     Route::resource('products', ProductController::class)->except(['show']);
 });

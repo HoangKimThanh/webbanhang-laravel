@@ -10,7 +10,7 @@
                         <div class="sign-left">
                             <h4>Đăng nhập bằng tài khoản đã có:</h4>
                             <p class="message"><span class="highlight"></span></p>
-                            <form action="{{ route('user.auth') }}" method="post">
+                            <form action="{{ route('user.login') }}" method="post">
                                 @csrf
                                 <div class="row">
                                     <div class="col l-5 m-5 c-12">
@@ -20,7 +20,7 @@
                                     </div>
 
                                     <div class="col l-7 m-7 c-12">
-                                        <input value="" required type="email" name="email" id="signin-email"
+                                        <input value="{{ old('email') }}" required type="email" name="email" id="signin-email"
                                             placeholder="Email của bạn...">
                                     </div>
 
@@ -75,7 +75,7 @@
                                 Tạo tài khoản giúp bạn có trải nghiệm thú vị và quá trình mua hàng trở nên nhanh chóng hơn!
                             </p>
 
-                            <a href="./dang-ky" class="btn">Đăng ký</a>
+                            <a href="{{ route('register') }}" class="btn">Đăng ký</a>
                         </div>
                     </div>
                 </div>

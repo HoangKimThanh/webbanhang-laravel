@@ -14,4 +14,29 @@ class HomeController extends Controller
             'featuredProducts' => $featuredProducts,
         ]);
     }
+
+    public function intro()
+    {
+        return view('pages.intro');
+    }
+
+    public function news()
+    {
+        return view('pages.news');
+    }
+
+    public function contact()
+    {
+        return view('pages.contact');
+    }
+
+    public function register()
+    {
+        return view('pages.register');
+    }
+
+    public function login()
+    {
+        return view('pages.login');
+    }
 }

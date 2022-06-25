@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Http\Requests\StoreUserRequest;
-use App\Http\Requests\UpdateUserRequest;
+use App\Http\Requests\User\StoreUserRequest;
+use App\Http\Requests\User\UpdateUserRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -19,35 +22,32 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \App\Http\Requests\StoreUserRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreUserRequest $request)
+    public function register(StoreUserRequest $request)
     {
-        //
+        $user = new User();
+        $user->fill($request->validated());
+        $user->save();
+
+        $credentials = $request->only(['email', 'password']);
+
+        Auth::guard('user')->attempt($credentials);
+
+        return redirect()->route('home');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function show(User $user)
+    public function login(Request $request)
     {
-        return view('pages.profile');
+        $credentials = $request->only(['email', 'password']);
+        if (Auth::guard('user')->attempt($credentials)) {
+            return redirect()->route('home');
+        } else {
+            return redirect()->back()->withInput();
+        }
     }
 
     /**
@@ -56,9 +56,11 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit()
     {
-        //
+        $user = User::find(Auth::guard('user')->user()->id);
+
+        return view('pages.user.edit', compact('user'));
     }
 
     /**
@@ -79,8 +81,9 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function logout()
     {
-        //
+        Auth::guard('user')->logout();
+        return redirect()->route('login');
     }
 }

@@ -52,7 +52,7 @@
             <h3>Tin tức nổi bật</h3>
             <ul class="autoWidth cs-hidden">
                 <li>
-                    <a href="tin-tuc" class=" box">
+                    <a href="{{ route('news') }}" class=" box">
                         <div class="box-img">
                             <img class="news__image" src="{{ asset('img/news-1.jpg') }}" alt="">
                         </div>
@@ -65,7 +65,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="tin-tuc" class=" box">
+                    <a href="{{ route('news') }}" class=" box">
                         <div class="box-img">
                             <img class="news__image" src="{{ asset('img/news-2.jpg') }}" alt="">
                         </div>
@@ -78,7 +78,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="tin-tuc" class=" box">
+                    <a href="{{ route('news') }}" class=" box">
                         <div class="box-img">
                             <img class="news__image" src="{{ asset('img/news-3.jpg') }}" alt="">
                         </div>
@@ -91,7 +91,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="tin-tuc" class=" box">
+                    <a href="{{ route('news') }}" class=" box">
                         <div class="box-img">
                             <img class="news__image" src="{{ asset('img/news-4.jpg') }}" alt="">
                         </div>
@@ -104,7 +104,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="tin-tuc" class=" box">
+                    <a href="{{ route('news') }}" class=" box">
                         <div class="box-img">
                             <img class="news__image" src="{{ asset('img/news-5.jpg') }}" alt="">
                         </div>
@@ -117,7 +117,7 @@
                     </a>
                 </li>
             </ul>
-            <a href="tin-tuc" class="btn">Xem thêm</a>
+            <a href="{{ route('news') }}" class="btn">Xem thêm</a>
         </div>
         <script src="{{ asset('js/script.js') }}"></script>
         <script src="{{ asset('js/lightslider.js') }}"></script>
