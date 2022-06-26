@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
@@ -23,9 +24,12 @@ Route::get('/tin-tuc', [HomeController::class, 'news'])->name('news');
 Route::get('/lien-he', [HomeController::class, 'contact'])->name('contact');
 Route::get('/dang-ky', [HomeController::class, 'register'])->name('register');
 Route::get('/dang-nhap', [HomeController::class, 'login'])->name('login');
+Route::get('/gio-hang', [HomeController::class, 'cart'])->name('cart');
 
 Route::get('/cua-hang', [ProductController::class, 'index'])->name('products');
 Route::get('/tim-kiem', [ProductController::class, 'search'])->name('products.search');
+
+Route::post('/cart-ajax', [CartController::class, 'ajax'])->name('cart-ajax');
 
 Route::post('/dang-ky', [UserController::class, 'register'])->name('user.register');
 Route::post('/dang-nhap', [UserController::class, 'login'])->name('user.login');
@@ -37,12 +41,12 @@ Route::middleware('auth:user')->group(function () {
     Route::get('/lich-su-mua-hang', [UserController::class, 'index'])->name('user.profile');
 });
 
-// Route::get('/{category_url}', [ProductController::class, 'index'])
-//     ->name('products.filter');
-Route::get('/{slug}-{category_id}', [ProductController::class, 'index'])
-    ->where('slug', '[a-zA-Z0-9-_]+')
-    ->where('id', '[0-9]+')
+Route::get('/{category_url}', [ProductController::class, 'index'])
     ->name('products.filter');
+// Route::get('/{slug}-{category_id}', [ProductController::class, 'index'])
+//     ->where('slug', '[a-zA-Z0-9-_]+')
+//     ->where('id', '[0-9]+')
+//     ->name('products.filter');
 
 // Route::get('/cua-hang/{product_url}', [ProductController::class, 'show'])
 //     ->name('products.show');

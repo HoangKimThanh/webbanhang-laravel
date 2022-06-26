@@ -39,7 +39,7 @@
                                                 @php
                                                     // dd($selectedCategory->id, $category->id)
                                                 @endphp
-                                                <a href="{{ route('products.filter', [$category->url, $category->id]) }}"
+                                                <a href="{{ route('products.filter', [$category->url]) }}"
                                                     style="
                                                         @isset($selectedCategory) @if ($selectedCategory->id == $category->id)
                                                                 font-weight: bold @endif

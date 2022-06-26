@@ -26,17 +26,6 @@ class Product extends Model
         'featured',
     ];
 
-    public function getOldPriceAttribute()
-    {
-        return number_format($this->attributes['old_price']) . 'đ';
-    }
-
-    public function getNewPriceAttribute()
-    {
-        if ($this->attributes['new_price'])
-            return number_format($this->attributes['new_price']) . 'đ';
-    }
-
     public function setUrlAttribute($value)
     {
         $this->attributes['url'] = UrlService::makeUrl($this->attributes['name']);

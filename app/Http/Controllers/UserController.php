@@ -70,9 +70,12 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateUserRequest $request, User $user)
+    public function update(UpdateUserRequest $request)
     {
-        //
+        $user = User::find(Auth::guard('user')->user()->id);
+        $user->update($request->validated());
+
+        return back()->with('success', 'Cập nhật thông tin cá nhân thành công');
     }
 
     /**

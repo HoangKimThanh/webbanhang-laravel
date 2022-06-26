@@ -5,15 +5,6 @@
         <div class="sign signup">
             <div class="grid wide">
                 <h3 class="sign__heading">Đăng ký</h3>
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
                 <form method="post" id="form" action="{{ route('user.register') }}">
                     @csrf
                     <div class="row">
@@ -30,7 +21,11 @@
                                             <input type="text" name="name" id="signup-fullname"
                                                 placeholder="Họ tên..." autocomplete="username">
                                             <br>
-                                            <span class="form-message"></span>
+                                            <span class="form-message">
+                                                @error('name')
+                                                    {{ $message }}
+                                                @enderror
+                                            </span>
                                         </div>
                                     </div>
                                     <div class="col l-6 m-6 c-12">
@@ -42,7 +37,11 @@
                                             <input type="email" name="email" id="signup-email" placeholder="Email..."
                                                 autocomplete="email">
                                             <br>
-                                            <span class="form-message"></span>
+                                            <span class="form-message">
+                                                @error('email')
+                                                    {{ $message }}
+                                                @enderror
+                                            </span>
                                         </div>
                                     </div>
                                     <div class="col l-6 m-6 c-12">
@@ -54,7 +53,11 @@
                                             <input type="text" name="phone" id="signup-phone"
                                                 placeholder="Điện thoại..." autocomplete="phone">
                                             <br>
-                                            <span class="form-message"></span>
+                                            <span class="form-message">
+                                                @error('phone')
+                                                    {{ $message }}
+                                                @enderror
+                                            </span>
                                         </div>
                                     </div>
                                     <div class="col l-6 m-6 c-12">
@@ -66,7 +69,11 @@
                                             <select name="province" id="signup-province">
                                             </select>
                                             <br>
-                                            <span class="form-message"></span>
+                                            <span class="form-message">
+                                                @error('province')
+                                                    {{ $message }}
+                                                @enderror
+                                            </span>
                                         </div>
                                     </div>
                                     <div class="col l-6 m-6 c-12">
@@ -79,7 +86,11 @@
                                                 <option>Chọn Quận/Huyện</option>
                                             </select>
                                             <br>
-                                            <span class="form-message"></span>
+                                            <span class="form-message">
+                                                @error('district')
+                                                    {{ $message }}
+                                                @enderror
+                                            </span>
                                         </div>
                                     </div>
                                     <div class="col l-6 m-6 c-12">
@@ -92,7 +103,11 @@
                                                 <option>Chọn Xã/Phường</option>
                                             </select>
                                             <br>
-                                            <span class="form-message"></span>
+                                            <span class="form-message">
+                                                @error('ward')
+                                                    {{ $message }}
+                                                @enderror
+                                            </span>
                                         </div>
                                     </div>
                                     <div class="col l-12 m-12 c-12">
@@ -104,7 +119,11 @@
                                             <textarea name="address" id="signup-address" rows="5"
                                                 placeholder="Vui lòng điền chính xác thông tin địa chỉ: số nhà, đường, tổ/ấp" autocomplete="address"></textarea>
                                             <br>
-                                            <span class="form-message"></span>
+                                            <span class="form-message">
+                                                @error('address')
+                                                    {{ $message }}
+                                                @enderror
+                                            </span>
                                         </div>
 
                                     </div>
@@ -126,7 +145,11 @@
                                                 autocomplete="new-password" placeholder="Mật khẩu..."
                                                 title="Mật khẩu tối thiểu 8 ký tự, bao gồm ít nhất 1 chữ hoa, chữ thường và số.">
                                             <br>
-                                            <span class="form-message"></span>
+                                            <span class="form-message">
+                                                @error('password')
+                                                    {{ $message }}
+                                                @enderror
+                                            </span>
                                         </div>
                                     </div>
                                     <div class="col l-12 m-12 c-12">
@@ -138,7 +161,11 @@
                                             <input type="password" name="passwordConfirm" id="signup-passwordAgain"
                                                 placeholder="Nhập lại mật khẩu..." autocomplete="new-password">
                                             <br>
-                                            <span class="form-message"></span>
+                                            <span class="form-message">
+                                                @error('passwordConfirm')
+                                                    {{ $message }}
+                                                @enderror
+                                            </span>
                                         </div>
                                     </div>
                                     <div class="col l-12 m-12 c-12">

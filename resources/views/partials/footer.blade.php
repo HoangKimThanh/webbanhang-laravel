@@ -5,7 +5,8 @@
                     <div class="col l-3 m-12 c-12 footer__input">
                         <h3 class="footer__heading"><b>PhuKienUITNhom10</b></h3>
                         <p>
-                            PhuKienUITNhom10 là một cửa hàng máy tính chuyên bán phụ kiện máy tính tại Thành phố Hồ Chí Minh luôn đem đến sản phẩm chất lượng với giá cả phải chăng phù hợp với sinh viên.
+                            PhuKienUITNhom10 là một cửa hàng máy tính chuyên bán phụ kiện máy tính tại Thành phố Hồ Chí
+                            Minh luôn đem đến sản phẩm chất lượng với giá cả phải chăng phù hợp với sinh viên.
                         </p>
                     </div>
                     <div class="col l-2 m-3 c-6">
@@ -41,7 +42,7 @@
                         <ul class="footer__list">
                             <li>
                                 <a href="https://shopee.vn/phnguyncng">
-                                    <img src="./assets/img/shopee.png" alt="" style="height: 20px;">
+                                    <img src="{{ asset('img/shopee.png') }}" alt="" style="height: 20px;">
                                 </a>
                             </li>
                             <li>
@@ -84,9 +85,10 @@
                 </div>
             </div>
         </footer>
-    </div>
+        </div>
 
-    <script src="{{ asset('js/header.js') }}"></script>
-    <script src="{{ asset('js/index.js') }}"></script>
-</body>
-</html>
+        <script src="{{ asset('js/header.js') }}"></script>
+        <script src="{{ asset('js/index.js') }}"></script>
+        </body>
+
+        </html>

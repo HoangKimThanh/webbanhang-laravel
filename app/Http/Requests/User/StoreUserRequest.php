@@ -30,11 +30,13 @@ class StoreUserRequest extends FormRequest
             ],
             'phone' => [
                 'required',
-                'regex:/^(((\+|)84)|0)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$/'
+                'regex:/^(((\+|)84)|0)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$/',
+                'unique:App\Models\User,phone',
             ],
             'email' => [
                 'required',
                 'email',
+                'unique:App\Models\User,email',
             ],
             'province' => [
                 'required',
@@ -82,6 +84,7 @@ class StoreUserRequest extends FormRequest
             'numeric' => ':attribute không đúng định dạng',
             'email' => ':attribute không đúng định dạng',
             'same' => ':attribute không đúng',
+            'unique' => ':attribute đã được sử dụng',
         ];
     }
 }

@@ -5,18 +5,26 @@
         <div class="profile">
             <div class="grid wide">
                 <div class="row">
+                    @if (session()->has('success'))
+                        <input type="hidden" id="success" value="{{ session()->get('success') }}">
+                    @endif
                     <div class="col l-12 m-12 c-12">
                         <div class="profile__info">
                             <h2>Thông tin cá nhân</h2>
-                            <form method="{{ route('user.update') }}" id="form">
+                            <form method="POST" id="form" action="{{ route('user.update') }}">
                                 @csrf
+                                @method('PUT')
                                 <div class="form-group">
                                     <label for="name">
                                         Họ tên:
                                     </label>
                                     <br>
                                     <input value="{{ $user->name }}" name="name" type="text" id="name">
-                                    <span class="form-message"></span>
+                                    <span class="form-message">
+                                        @error('name')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
                                 </div>
                                 <div class="form-group">
                                     <label for="phone">
@@ -24,7 +32,11 @@
                                     </label>
                                     <br>
                                     <input value="{{ $user->phone }}" name="phone" type="text" id="phone">
-                                    <span class="form-message"></span>
+                                    <span class="form-message">
+                                        @error('phone')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
                                 </div>
                                 <div class="form-group">
                                     <label for="province">
@@ -32,7 +44,11 @@
                                     </label>
                                     <br>
                                     <select name="province" id="province"></select>
-                                    <span class="form-message"></span>
+                                    <span class="form-message">
+                                        @error('province')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
                                 </div>
                                 <div class="form-group">
                                     <label for="district">
@@ -40,7 +56,11 @@
                                     </label>
                                     <br>
                                     <select name="district" id="district"></select>
-                                    <span class="form-message"></span>
+                                    <span class="form-message">
+                                        @error('district')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
                                 </div>
                                 <div class="form-group">
                                     <label for="ward">
@@ -48,7 +68,11 @@
                                     </label>
                                     <br>
                                     <select name="ward" id="ward"></select>
-                                    <span class="form-message"></span>
+                                    <span class="form-message">
+                                        @error('ward')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
                                 </div>
                                 <div class="form-group">
                                     <label for="address">
@@ -56,13 +80,17 @@
                                     </label>
                                     <br>
                                     <textarea name="address" id="address" cols="30" rows="5">{{ $user->address }}</textarea>
-                                    <span class="form-message"></span>
+                                    <span class="form-message">
+                                        @error('address')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
                                 </div>
-                                <input type="hidden" name="province" value="{{ $user->province }}" class="province">
-                                <input type="hidden" name="district" value="{{ $user->district }}" class="district">
-                                <input type="hidden" name="ward" value="{{ $user->ward }}" class="ward">
                                 <button class="btn" type="submit" name="submit" value="submit">Cập nhật</button>
                             </form>
+                            <input type="hidden" name="province" value="{{ $user->province }}" class="province">
+                            <input type="hidden" name="district" value="{{ $user->district }}" class="district">
+                            <input type="hidden" name="ward" value="{{ $user->ward }}" class="ward">
                         </div>
 
                         <div class="profile__account">
@@ -95,6 +123,11 @@
 
 @section('scripts')
     <script>
+        const elementSuccess = document.querySelector('#success');
+        if (elementSuccess) {
+            alert(elementSuccess.value);
+        }
+
         var provinces = [];
         var districts = [];
         var wards = [];
@@ -159,7 +192,7 @@
                 let hiddenDistrictId = document.querySelector('.district').value;
                 let hiddenWardId = document.querySelector('.ward').value;
 
-                var provinceString = '<option selected disabled value="">Chọn Tỉnh/TP</option>'
+                var provinceString = '<option disabled value="">Chọn Tỉnh/TP</option>'
                 provinces.forEach((province) => {
                     if (hiddenProvinceId && province.id === hiddenProvinceId) {
                         provinceString += `<option selected value="${province.id}">${province.name}</option>`;
