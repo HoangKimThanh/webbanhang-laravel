@@ -57,8 +57,8 @@ class Product extends Model
         return Product::whereFeatured(1)->get();
     }
 
-    public static function getByCategory($selectedCategory)
+    public static function getByCategory($selectedCategory, $sort = 'asc')
     {
-        return Product::where('category_id', '=', $selectedCategory->id)->paginate(2);
+        return Product::where('category_id', '=', $selectedCategory->id)->orderBy('old_price', $sort)->paginate(2);
     }
 }

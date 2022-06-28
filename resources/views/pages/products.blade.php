@@ -39,7 +39,7 @@
                                                 @php
                                                     // dd($selectedCategory->id, $category->id)
                                                 @endphp
-                                                <a href="{{ route('products.filter', [$category->url]) }}"
+                                                <a href="{{ route('products.filter', [$category->url, $category->id]) }}"
                                                     style="
                                                         @isset($selectedCategory) @if ($selectedCategory->id == $category->id)
                                                                 font-weight: bold @endif
@@ -62,7 +62,7 @@
                                     <option value="asc" class="price-sort-option">
                                         Giá: Thấp đến cao
                                     </option>
-                                    <option value="desc" class="price-sort-option">
+                                    <option value="desc" class="price-sort-option" @if ($sort == "desc") selected @endif>
                                         Giá: Cao đến thấp
                                     </option>
                                 </select>
@@ -110,4 +110,28 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script>
+        $(document).ready(function() {
+            $('#price-sort').change(function() {
+                let sort = $(this).val();
+                let href = window.location.href;
+
+                if (href.indexOf('sort') == -1) {
+                    if (href.indexOf('?') == -1) {
+                        location.href = href + '?sort=' + sort;
+                        return;
+                    } else {
+                        location.href = href + '&sort=' + sort;
+                        return;
+                    }
+                }
+                location.href = (href.indexOf('asc') != -1) ? href.replace('asc', 'desc') : href.replace(
+                    'desc', 'asc');
+            })
+
+        })
+    </script>
 @endsection

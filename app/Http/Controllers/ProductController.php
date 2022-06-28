@@ -11,8 +11,10 @@ class ProductController extends Controller
 {
     public function index(Request $request)
     {
-        $selectedCategory = Category::whereUrl($request->category_url)->first();
-        $products = $selectedCategory ? Product::getByCategory($selectedCategory) : Product::paginate(2);
+        $sort = $request->sort ?? 'asc';
+        $selectedCategory = Category::whereId($request->category_id)->first();
+        $products = $selectedCategory ? Product::getByCategory($selectedCategory, $sort) : Product::orderBy('old_price', $sort)->paginate(2);
+        $products->appends(['sort' => $sort]);
         $categories = Category::getTotalPerCategory();
         $totalProducts = Product::count();
 
@@ -21,6 +23,7 @@ class ProductController extends Controller
             'categories' => $categories,
             'total_products' => $totalProducts,
             'selectedCategory' => $selectedCategory,
+            'sort' => $sort,
         ]);
     }
 

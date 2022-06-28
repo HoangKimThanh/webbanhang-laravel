@@ -19,13 +19,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @php
-                                            $total = 0;
-                                        @endphp
                                         @foreach ($cart as $item)
-                                            @php
-                                                $total += $item['quantity'] * $item['price'];
-                                            @endphp
                                             <tr class="product-id_{{ $item['id'] }}">
                                                 <td>
                                                     <a href="{{ route('products.show', [$item['url'], $item['id']]) }}">
@@ -78,9 +72,7 @@
                                             <td>TỔNG TIỀN HÀNG</td>
                                             <td>
                                                 <span class="total_1">
-                                                    @php
-                                                        echo $total;
-                                                    @endphp
+                                                    {{ Session::get('cart_total') }}
                                                 </span>
                                             </td>
                                         </tr>
@@ -90,9 +82,7 @@
                                             <td>TẠM TÍNH</td>
                                             <td>
                                                 <span class="total_2">
-                                                    @php
-                                                        echo $total;
-                                                    @endphp
+                                                    {{ Session::get('cart_total') }}
                                                 </span>
                                             </td>
                                         </tr>
@@ -100,10 +90,17 @@
                                 </table>
                                 <div class="button">
                                     <a href="{{ route('products') }}" class="btn btn--ccc">Tiếp tục mua sắm</a>
-                                    <a href="dat-hang" class="btn">Đặt hàng</a>
+                                    <a href="{{ route('order') }}" class="btn">Đặt hàng</a>
                                 </div>
                             </div>
                         </div>
+                    </div>
+
+                    <div class="cart-empty" style="display: none">
+                        <a href="{{ route('products') }}" style="display: block; text-align: center">
+                            <img style="display: block; width: 50%; margin: 0 auto;"
+                                src="{{ asset('img/empty-cart.jpg') }}" />
+                        </a>
                     </div>
                 @else
                     <a href="{{ route('products') }}" style="display: block; text-align: center">

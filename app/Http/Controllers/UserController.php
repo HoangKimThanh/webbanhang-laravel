@@ -8,6 +8,8 @@ use App\Http\Requests\User\UpdateUserRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\URL;
 
 class UserController extends Controller
 {
@@ -42,8 +44,10 @@ class UserController extends Controller
 
     public function login(Request $request)
     {
-        $credentials = $request->only(['email', 'password']);
-        if (Auth::guard('user')->attempt($credentials)) {
+        $remember = ($request->remember) ? true : false;
+        $credentials = ['email' => $request->email, 'password' => $request->password];
+        if (Auth::guard('user')->attempt($credentials, $remember)) {
+            dd(URL::previous());
             return redirect()->route('home');
         } else {
             return redirect()->back()->withInput();

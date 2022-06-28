@@ -20,7 +20,7 @@
                                     </div>
 
                                     <div class="col l-7 m-7 c-12">
-                                        <input value="{{ old('email') }}" required type="email" name="email" id="signin-email"
+                                        <input value="{{ old('email') ?? Cookie::get('email') }}" required type="email" name="email" id="signin-email"
                                             placeholder="Email của bạn...">
                                     </div>
 
@@ -31,7 +31,7 @@
                                     </div>
 
                                     <div class="col l-7 m-7 c-12">
-                                        <input value="" required type="password" name="password"
+                                        <input value="{{ Cookie::get('password') }}" required type="password" name="password"
                                             id="signin-password" placeholder="Mật khẩu của bạn...">
                                     </div>
 

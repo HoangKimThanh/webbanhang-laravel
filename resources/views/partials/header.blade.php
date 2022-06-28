@@ -62,15 +62,15 @@
                                                     <i class="fas fa-angle-down"></i>
                                                 </a>
                                                 <ul class="subMenu-list">
-                                                    <li><a href="thong-tin-ca-nhan">Thông tin cá nhân</a></li>
-                                                    <li><a href="lich-su-mua-hang">Đơn đã mua</a></li>
-                                                    <li><a href="dang-xuat">Đăng xuất</a></li>
+                                                    <li><a href="{{ route('user.edit') }}">Thông tin cá nhân</a></li>
+                                                    <li><a href="{{ route('invoices.history') }}">Đơn đã mua</a></li>
+                                                    <li><a href="{{ route('user.logout') }}">Đăng xuất</a></li>
                                                 </ul>
 
                                             </li>
                                         @else
                                             <li class="login__mobile hide-on-tablet hide-on-pc">
-                                                <a href="./dang-nhap">
+                                                <a href="{{ route('user.login') }}">
                                                     Đăng nhập/Đăng ký
                                                     <i class="fas fa-user-circle"></i>
                                                 </a>
@@ -97,7 +97,7 @@
                                         </form>
                                     </li>
                                     <li>
-                                        <a href="./tra-cuu">
+                                        <a href="{{ route('invoices.show') }}">
                                             <i class="fas fa-paw" title="Tra cứu đơn hàng"></i>
                                         </a>
                                     </li>

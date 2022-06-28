@@ -35,7 +35,7 @@
                     <li>
                         <a href="#"><i class="fa-solid fa-user"></i> Khách hàng</a>
                         <ul>
-                            <li><a href="">Danh sách khách hàng</a></li>
+                            <li><a href="{{ route('users.index') }}">Danh sách khách hàng</a></li>
                         </ul>
                     </li>
                     <li>
