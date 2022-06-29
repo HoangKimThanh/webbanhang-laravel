@@ -12,7 +12,7 @@
         <link href="{{ asset('backend/css/styles.css') }}" rel="stylesheet" />
         <link href="{{ asset('backend/css/custom.css') }}" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
-        <script src="http://cdn.ckeditor.com/4.19.0/standard/ckeditor.js"></script>
+        <script src="https://cdn.ckeditor.com/4.19.0/standard/ckeditor.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     </head>
     <body class="sb-nav-fixed">
