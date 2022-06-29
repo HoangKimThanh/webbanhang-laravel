@@ -26,7 +26,7 @@
                         </a>
                         <ul>
                             <li>
-                                <a href="">
+                                <a href="{{ route('invoices.index') }}">
                                     Danh sách đơn hàng
                                 </a>
                             </li>

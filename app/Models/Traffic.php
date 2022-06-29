@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Traffic extends Model
 {
@@ -20,6 +21,22 @@ class Traffic extends Model
         'date',
         'visitors',
     ];
+
+    public static function getTotalVisitors()
+    {
+        $total = Traffic::sum('visitors');
+
+        return $total;
+    }
+
+    public static function getDataStatistics()
+    {
+        $data = Traffic::select("date", DB::raw("sum(visitors) as visitors"))
+            ->groupBy("date")
+            ->get();
+
+        return $data;
+    }
 
     /**
      * Set the keys for a save update query.

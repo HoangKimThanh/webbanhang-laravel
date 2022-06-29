@@ -20,7 +20,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::get();
+
+        return view('admin.users.index', compact('users'));
     }
 
     /**
@@ -95,5 +97,12 @@ class UserController extends Controller
         Session::forget('user');
         Session::save();
         return redirect()->route('login');
+    }
+
+    public function destroy(User $user)
+    {
+        $user->delete();
+
+        return redirect()->back();
     }
 }
