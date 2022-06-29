@@ -57,6 +57,7 @@ class Kernel extends HttpKernel
         'auth' => \App\Http\Middleware\Authenticate::class,
         'checkCart' => \App\Http\Middleware\CheckCart::class,
         'checkInvoice' => \App\Http\Middleware\CheckInvoice::class,
+        'checkFirstVisit' => \App\Http\Middleware\CheckFirstVisit::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
