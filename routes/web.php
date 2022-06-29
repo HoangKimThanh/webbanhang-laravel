@@ -8,10 +8,6 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-if (App::environment('production')) {
-    URL::forceScheme('https');
-}
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
