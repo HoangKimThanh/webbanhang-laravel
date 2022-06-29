@@ -2,12 +2,13 @@
 <html>
 
 <head>
-    <title>LaptopUIT.com</title>
+    <title>PhuKienHKT.com</title>
 </head>
 
 <body>
     <p>
-        Mã đơn hàng của quý khách là {{ $details['invoiceId'] }}. Dùng mã này để tra cứu đơn hàng tại
+        Mã đơn hàng của quý khách là {{ $details['invoiceId'] }}. Dùng mã này để tra cứu đơn hàng tại <a
+            href="{{ route('invoices.show') }}">PhuKienHKT</a>
     </p>
 
     <p>Trân trọng</p>

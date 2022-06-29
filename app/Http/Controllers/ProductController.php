@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Review;
 use App\Services\UrlService;
 use Illuminate\Http\Request;
 
@@ -30,8 +31,11 @@ class ProductController extends Controller
     public function show(Request $request)
     {
         $product = Product::find($request->product_id);
+        $reviews = Review::whereStatus(1)->get();
+        
         return view('pages.product-detail', data: [
             'product' => $product,
+            'reviews' => $reviews
         ]);
     }
 

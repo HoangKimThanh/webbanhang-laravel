@@ -61,7 +61,6 @@ class InvoiceController extends Controller
         $invoice = new Invoice();
         $invoice->fill($request->validated());
         $invoice->user_id = Auth::guard('user')->check() ? Auth::guard('user')->user()->id : 0;
-        // dd($invoice->user_id);
         $invoice->total = Session::get('cart_total');
         $invoiceId = uniqid();
         $invoice->id = $invoiceId;
@@ -86,7 +85,9 @@ class InvoiceController extends Controller
         Session::forget('cart_total');
         Session::save();
 
-        return view('pages.order-success', compact('invoiceId'));
+        Session::flash('invoiceId', $invoiceId);
+
+        return redirect()->route('invoices.thankyou');
     }
 
     /**
@@ -176,5 +177,10 @@ class InvoiceController extends Controller
         $invoices = Invoice::whereUserId(Auth::guard('user')->user()->id)->get();
 
         return view('pages.invoice-history', compact('invoices'));
+    }
+
+    public function thankyou()
+    {
+        return view('pages.order-success');
     }
 }

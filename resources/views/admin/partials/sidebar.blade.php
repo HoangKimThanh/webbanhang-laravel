@@ -44,7 +44,7 @@
                         </a>
                         <ul>
                             <li>
-                                <a href="">
+                                <a href="{{ route('reviews.index') }}">
                                     Danh sách đánh giá
                                 </a>
                             </li>

@@ -66,9 +66,9 @@
 
                     <div class="col l-6 m-6 c-12">
                         <div class="sign-right">
-                            <h4>Khách hàng mới của PhuKienUITNhom10</h4>
+                            <h4>Khách hàng mới của PhuKienHKT</h4>
                             <p>
-                                Đăng ký ngay nếu bạn chưa có tài khoản trên phukienuitnhom10.000webhostapp.com.
+                                Đăng ký ngay nếu bạn chưa có tài khoản trên {{ route('/') }}
                             </p>
 
                             <p>

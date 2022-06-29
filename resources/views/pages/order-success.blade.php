@@ -11,7 +11,7 @@
                     <h1> Đặt hàng thành công</h1>
                     <p class="message-thankyou">Cảm ơn bạn đã quan tâm và mua hàng. Chúng tôi đã gửi mail thông báo đến mail
                         đặt hàng của bạn.</p>
-                    <p class="message-check">Bạn có thể theo dõi thông tin đơn hàng bằng mã: {{ $invoiceId }}</p>
+                    <p class="message-check">Bạn có thể theo dõi thông tin đơn hàng bằng mã: {{ Session::get('invoiceId') }}</p>
                     <a class="btn-continue" href="cua-hang">Tiếp tục mua sắm</a>
                 </div>
             </div>

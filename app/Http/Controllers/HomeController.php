@@ -12,14 +12,6 @@ class HomeController extends Controller
 {
     public function index()
     {
-        // Session::forget('cart_total');
-        // Session::save();
-        // Session::forget('cart');
-        // Session::save();
-        // $cart = Session::get('cart');
-        // dd($cart);
-        $cart = Session::get('cart_total');
-        dd(Session::all());
         $featuredProducts = Product::getFeaturedProducts();
         return view('pages.home', data: [
             'featuredProducts' => $featuredProducts,

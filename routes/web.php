@@ -4,6 +4,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('/');
 Route::get('/trang-chu', [HomeController::class, 'index'])->name('home');
 Route::get('/gioi-thieu', [HomeController::class, 'intro'])->name('intro');
 Route::get('/tin-tuc', [HomeController::class, 'news'])->name('news');
@@ -28,7 +29,10 @@ Route::get('/dang-nhap', [HomeController::class, 'login'])->name('login');
 Route::get('/gio-hang', [HomeController::class, 'cart'])->name('cart');
 Route::middleware('checkCart')->get('/dat-hang', [HomeController::class, 'order'])->name('order');
 Route::middleware('checkCart')->post('/dat-hang', [InvoiceController::class, 'store'])->name('invoices.store');
+Route::middleware('checkInvoice')->get('/cam-on', [InvoiceController::class, 'thankyou'])->name('invoices.thankyou');
 Route::get('/tra-cuu-don-hang', [InvoiceController::class, 'show'])->name('invoices.show');
+
+Route::post('/danh-gia', [ReviewController::class, 'store'])->name('reviews.store');
 
 Route::get('/cua-hang', [ProductController::class, 'index'])->name('products');
 Route::get('/tim-kiem', [ProductController::class, 'search'])->name('products.search');

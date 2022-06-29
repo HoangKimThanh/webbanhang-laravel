@@ -47,7 +47,8 @@ class UserController extends Controller
         $remember = ($request->remember) ? true : false;
         $credentials = ['email' => $request->email, 'password' => $request->password];
         if (Auth::guard('user')->attempt($credentials, $remember)) {
-            dd(URL::previous());
+            $user = User::where('email', '=', $request->email)->first();
+            Session::put('user', $user);
             return redirect()->route('home');
         } else {
             return redirect()->back()->withInput();
@@ -91,6 +92,8 @@ class UserController extends Controller
     public function logout()
     {
         Auth::guard('user')->logout();
+        Session::forget('user');
+        Session::save();
         return redirect()->route('login');
     }
 }

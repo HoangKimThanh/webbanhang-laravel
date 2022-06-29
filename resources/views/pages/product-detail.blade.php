@@ -72,6 +72,120 @@
                 </div>
             </div>
 
+            <div class="row">
+                <div class="col l-12 m-12 c-12">
+                    <div class="review">
+                        @if (count($reviews) > 0)
+                        <h2>ĐÁNH GIÁ</h2>
+                            <ul class="list-reviews">
+                                @if(Session::has('tmpReview'))
+                                    @php
+                                        $tmpReview = Session::get('tmpReview');
+                                    @endphp
+                                    <li>
+                                        <div class="head_review">
+                                            <div class="user">
+                                                <p>Nhận xét của bạn đang chờ được kiểm duyệt</p>
+                                                <h3>@ <span>{{ $tmpReview['user_name'] }}</span></h3>
+                                            </div>
+                                            <div class="time">
+                                                {{ $tmpReview['created_at'] }}
+                                            </div>
+                                        </div>
+                                        <div class="body_review">
+                                            <p class="review_content">{{ $tmpReview['content'] }}</p>
+                                        </div>
+                                    </li>
+                                @endif
+                                @foreach ($reviews as $review)
+                                    <li>
+                                        <div class="head_review">
+                                            <div class="user">
+                                                <h3>@ <span>{{ $review->user_name }}</span></h3>
+                                            </div>
+                                            <div class="time">
+                                                {{ $review->created_at }}
+                                            </div>
+                                        </div>
+                                        <div class="body_review">
+                                            <p class="review_content">
+                                                {{ $review->content }}
+                                            </p>
+                                        </div>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        @endif
+                        <form method="post" id="form" action={{ route('reviews.store') }}>
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+                            @csrf
+                            <input type="hidden" name="product_id" value="{{ $product->id }}">
+                            <h2>Đánh giá của bạn</h2>
+                            <div class="row">
+                                @if (Session::has('user'))
+                                    <input type="hidden" name="user_name" value="{{ Session::get('user.name') }}">
+                                    <input type="hidden" name="user_email" value="{{ Session::get('user.email') }}">
+                                @else
+                                    <div class="col l-6 m-6 c-12">
+                                        <div class="form-group">
+                                            <label for="name">
+                                                <p>
+                                                    Họ và tên
+                                                </p>
+                                            </label>
+                                            <input id="name" type="text" name="user_name" placeholder="Họ và tên">
+                                            <span class="form-message">
+                                                @error('user_name')
+                                                    {{ $message }}
+                                                @enderror
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col l-6 m-6 c-12">
+                                        <div class="form-group">
+                                            <label for="email">
+                                                <p>
+                                                    Email
+                                                </p>
+                                            </label>
+                                            <input id="email" type="text" name="user_email" placeholder="Email">
+                                            <span class="form-message">
+                                                @error('user_email')
+                                                    {{ $message }}
+                                                @enderror
+                                            </span>
+                                        </div>
+                                    </div>
+                                @endif
+                            </div>
+                            <div class="form-group">
+                                <label for="content">
+                                    <p>
+                                        Nội dung đánh giá
+                                    </p>
+                                </label>
+                                <textarea id="content" name="content" cols="30" rows="8" placeholder="Nội dung đánh giá"></textarea>
+                                <span class="form-message">
+                                    @error('content')
+                                        {{ $message }}
+                                    @enderror
+                                </span>
+                            </div>
+                            <button type="submit" name="submit" value="review">
+                                Gửi
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 @endsection

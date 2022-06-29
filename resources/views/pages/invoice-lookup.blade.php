@@ -144,7 +144,9 @@
                             </tfoot>
                         </table>
                     @else
-                        <h1 class="error">ĐƠN HÀNG KHÔNG TỒN TẠI!!</h1>
+                        @if ($invoiceId != null)
+                            <h1 class="error">ĐƠN HÀNG KHÔNG TỒN TẠI!!</h1>
+                        @endif
                     @endif
 
                 </div>

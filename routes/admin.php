@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\ReviewController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,5 +35,6 @@ Route::middleware('auth:admin')->group(function () {
     Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
     Route::get('/invoices', [InvoiceController::class, 'index'])->name('invoices.index');
     Route::post('/invoices-ajax', [InvoiceController::class, 'ajax'])->name('invoices.ajax');
-
+    Route::get('/reviews', [ReviewController::class, 'index'])->name('reviews.index');
+    Route::post('/reviews-ajax', [ReviewController::class, 'ajax'])->name('reviews.ajax');
 });
