@@ -1,5 +1,13 @@
 @extends('layouts.main')
 
+@section('title')
+    @if ($selectedCategory)
+        {{ $selectedCategory->name }}
+    @else
+        Cửa hàng
+    @endif
+@endsection
+
 @section('content')
     <div class="main">
         <div class="container">
@@ -62,7 +70,8 @@
                                     <option value="asc" class="price-sort-option">
                                         Giá: Thấp đến cao
                                     </option>
-                                    <option value="desc" class="price-sort-option" @if ($sort == "desc") selected @endif>
+                                    <option value="desc" class="price-sort-option"
+                                        @if ($sort == 'desc') selected @endif>
                                         Giá: Cao đến thấp
                                     </option>
                                 </select>

@@ -24,7 +24,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
         integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <title> Document </title>
+    <title> @yield('title') | Phụ Kiện UIT</title>
 </head>
 
 <body>
@@ -55,7 +55,7 @@
                                     </p>
 
                                     <ul class="menu-list">
-                                        @if (Auth::guard('user')->check())
+                                        @auth('user')
                                             <li class="menu-list__products login__mobile hide-on-tablet hide-on-pc">
                                                 <a>
                                                     <span>Tài khoản</span>
@@ -68,14 +68,16 @@
                                                 </ul>
 
                                             </li>
-                                        @else
+                                        @endauth
+
+                                        @guest('user')
                                             <li class="login__mobile hide-on-tablet hide-on-pc">
                                                 <a href="{{ route('user.login') }}">
                                                     Đăng nhập/Đăng ký
                                                     <i class="fas fa-user-circle"></i>
                                                 </a>
                                             </li>
-                                        @endif
+                                        @endguest
                                         <li><a href="{{ route('intro') }}">GIỚI THIỆU</a></li>
                                         <li><a href="{{ route('products') }}">PHỤ KIỆN MÁY TÍNH</a></li>
                                         <li><a href="{{ route('news') }}">TIN TỨC</a></li>
@@ -102,7 +104,7 @@
                                         </a>
                                     </li>
                                     <li class="hide-on-mobile user__item">
-                                        @if (Auth::guard('user')->check())
+                                        @auth('user')
                                             <a>
                                                 <i class="fas fa-user"></i>
                                                 <i class="fas fa-caret-down"></i>
@@ -122,11 +124,13 @@
                                                         class="user__info-item-link">Đăng xuất</a>
                                                 </li>
                                             </ul>
-                                        @else
+                                        @endauth
+
+                                        @guest('user')
                                             <a href="{{ route('login') }}">
                                                 Đăng nhập/Đăng ký
                                             </a>
-                                        @endif
+                                        @endguest
                                     </li>
 
                                     @php
@@ -188,7 +192,8 @@
                                                     <a href="{{ route('cart') }}" class="btn">Xem Giỏ Hàng</a>
                                                 </div>
                                             @else
-                                                <img class="no-cart" src="{{asset('img/no_cart.png')}}" alt="">
+                                                <img class="no-cart" src="{{ asset('img/no_cart.png') }}"
+                                                    alt="">
                                                 <p class="cart__list--empty">Chưa Có Sản Phẩm</p>
                                             @endif
                                         </div>

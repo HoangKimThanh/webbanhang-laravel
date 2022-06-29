@@ -1,5 +1,9 @@
 @extends('layouts.main')
 
+@section('title')
+    Tin tức
+@endsection
+
 @section('content')
     <div class="main">
         <div class="news">

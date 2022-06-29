@@ -1,5 +1,9 @@
 @extends('layouts.main')
 
+@section('title')
+    Lịch sử mua hàng
+@endsection
+
 @section('content')
     <div class="main">
         <div class="grid wide">
@@ -19,7 +23,7 @@
                                     <tr>
                                         <td style="padding: 12px 0;">
                                             <a style="text-decoration:underline; color:blue;"
-                                                href="./tra-cuu-don-hang?invoice_id={{ $invoice->id }}">{{ $invoice->id }}</a>
+                                                href="{{ route('invoices.show') . '?invoice_id=' .$invoice->id }}">{{ $invoice->id }}</a>
                                         </td>
                                         <td style="padding: 12px 0;">
                                             {{ $invoice->created_at }}

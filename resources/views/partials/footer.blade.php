@@ -41,11 +41,6 @@
                         <h3 class="footer__heading">THEO DÕI</h3>
                         <ul class="footer__list">
                             <li>
-                                <a href="https://shopee.vn/phnguyncng">
-                                    <img src="{{ asset('img/shopee.png') }}" alt="" style="height: 20px;">
-                                </a>
-                            </li>
-                            <li>
                                 <a href="">
                                     <i class="fab fa-facebook"></i>
                                     Facebook

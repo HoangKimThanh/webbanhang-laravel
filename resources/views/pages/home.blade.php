@@ -1,5 +1,9 @@
 @extends('layouts.main')
 
+@section('title')
+    Trang chủ
+@endsection
+
 @section('content')
     <div class="main-mobile main-tablet">
         <div class="slider">

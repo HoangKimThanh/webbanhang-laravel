@@ -1,5 +1,9 @@
 @extends('admin.layouts.main')
 
+@section('title')
+    Danh mục
+@endsection
+
 @section('content')
     <p>
         <a href="{{ route('categories.create') }}">Thêm danh mục sản phẩm</a>

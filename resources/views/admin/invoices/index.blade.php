@@ -1,5 +1,9 @@
 @extends('admin.layouts.main')
 
+@section('title')
+    Hóa đơn
+@endsection
+
 @section('content')
     <div id="ct-modal" class="ct-modal">
         <div class="ct-modal-content">

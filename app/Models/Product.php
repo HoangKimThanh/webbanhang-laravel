@@ -40,7 +40,7 @@ class Product extends Model
     {
         return explode(' ', $this->attributes['images_description']);
     }
-    
+
     public function getUrlProductAttribute()
     {
         return UrlService::makeUrl($this->name);
@@ -49,7 +49,7 @@ class Product extends Model
     public static function getWithCategory()
     {
         return Product::join('categories', 'products.category_id', '=', 'categories.id')
-        ->get(['products.*', 'categories.name as category_name']);
+            ->get(['products.*', 'categories.name as category_name']);
     }
 
     public static function getFeaturedProducts()
@@ -59,6 +59,8 @@ class Product extends Model
 
     public static function getByCategory($selectedCategory, $sort = 'asc')
     {
-        return Product::where('category_id', '=', $selectedCategory->id)->orderBy('old_price', $sort)->paginate(2);
+        return Product::where('category_id', '=', $selectedCategory->id)
+            ->orderBy('old_price', $sort)
+            ->paginate(2);
     }
 }

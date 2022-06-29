@@ -1,5 +1,9 @@
 @extends('admin.layouts.main')
 
+@section('title')
+    Sửa sản phẩm
+@endsection
+
 @section('content')
     <div class="admin-content-right-category__add">
         <h1>Sửa sản phẩm</h1>

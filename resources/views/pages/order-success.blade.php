@@ -1,5 +1,9 @@
 @extends('layouts.main')
 
+@section('title')
+    Đặt hàng thành công
+@endsection
+
 @section('content')
     <div class="main">
         <div class="row">

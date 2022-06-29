@@ -1,5 +1,9 @@
 @extends('admin.layouts.main')
 
+@section('title')
+    Đánh giá
+@endsection
+
 @section('content')
     <h1 style="text-align: center;">Danh sách đánh giá</h1>
     <h2>Đánh giá chưa duyệt</h2>

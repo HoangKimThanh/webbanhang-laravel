@@ -1,5 +1,9 @@
 @extends('admin.layouts.main');
 
+@section('title')
+    Sản phẩm
+@endsection
+
 @section('content')
     <p><a href="{{ route('products.create') }}">Thêm sản phẩm</a></p>
     <h1 style="text-align: center;">Danh sách sản phẩm</h1>

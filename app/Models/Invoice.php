@@ -55,8 +55,11 @@ class Invoice extends Model
     {
         $data = [];
         $revenues = Invoice::select(DB::raw("WEEKDAY(created_at) as day, SUM(total) as revenue"))
-            ->where("status", "=", 3)
-            ->where(DB::raw("yearweek(created_at)"), "=", DB::raw("yearweek(current_date)-1"))
+            ->where([
+                ["status", "=", 3],
+                [DB::raw("yearweek(created_at)"), "=", DB::raw("yearweek(current_date)-1")],
+                [DB::raw("YEAR(created_at)", "=", DB::raw("YEAR(current)"))]
+            ])
             ->whereYear("created_at", DB::raw("YEAR(current_date)"))
             ->groupBy("day")
             ->get();
@@ -76,9 +79,11 @@ class Invoice extends Model
     {
         $data = [];
         $revenues = Invoice::select(DB::raw("WEEKDAY(created_at) as day, SUM(total) as revenue"))
-            ->where("status", "=", 3)
-            ->where(DB::raw("yearweek(created_at)"), "=", DB::raw("yearweek(current_date)"))
-            ->whereYear("created_at", DB::raw("YEAR(current_date)"))
+            ->where([
+                ["status", "=", 3],
+                [DB::raw("yearweek(created_at)"), "=", DB::raw("yearweek(current_date)")],
+                [DB::raw("YEAR(created_at)"), "=", DB::raw("YEAR(current_date)")],
+            ])
             ->groupBy("day")
             ->get();
 
@@ -97,9 +102,11 @@ class Invoice extends Model
     {
         $data = [];
         $revenues = Invoice::select(DB::raw("DAYOFMONTH(created_at) as date, SUM(total) as revenue"))
-            ->where("status", "=", 3)
-            ->where(DB::raw("MONTH(created_at)"), "=", DB::raw("MONTH(current_date)-1"))
-            ->whereYear("created_at", DB::raw("YEAR(current_date)"))
+            ->where([
+                ["status", "=", 3],
+                [DB::raw("MONTH(created_at)"), "=", DB::raw("MONTH(current_date)-1")],
+                [DB::raw("YEAR(created_at)"), "=", DB::raw("YEAR(current_date)")]
+            ])
             ->groupBy("date")
             ->get();
 
@@ -118,9 +125,11 @@ class Invoice extends Model
     {
         $data = [];
         $revenues = Invoice::select(DB::raw("DAYOFMONTH(created_at) as date, SUM(total) as revenue"))
-            ->where("status", "=", 3)
-            ->where(DB::raw("MONTH(created_at)"), "=", DB::raw("MONTH(current_date)"))
-            ->whereYear("created_at", DB::raw("YEAR(current_date)"))
+            ->where([
+                ["status", "=", 3],
+                [DB::raw("MONTH(created_at)"), "=", DB::raw("MONTH(current_date)")],
+                [DB::raw("YEAR(created_at)"), "=", DB::raw("YEAR(current_date)")]
+            ])
             ->groupBy("date")
             ->get();
 
@@ -139,8 +148,10 @@ class Invoice extends Model
     {
         $data = [];
         $revenues = Invoice::select(DB::raw("MONTH(created_at) as month, SUM(total) as revenue"))
-            ->where("status", "=", 3)
-            ->whereYear("created_at", DB::raw("YEAR(current_date)-1"))
+            ->where([
+                ["status", "=", 3],
+                [DB::raw("YEAR(created_at)"), "=", DB::raw("YEAR(current_date)-1")]
+            ])
             ->groupBy("month")
             ->get();
 
@@ -159,8 +170,10 @@ class Invoice extends Model
     {
         $data = [];
         $revenues = Invoice::select(DB::raw("MONTH(created_at) as month, SUM(total) as revenue"))
-            ->where("status", "=", 3)
-            ->whereYear("created_at", DB::raw("YEAR(current_date)"))
+            ->where([
+                ["status", "=", 3],
+                [DB::raw("YEAR(created_at)"), "=", DB::raw("YEAR(current_date)")]
+            ])
             ->groupBy("month")
             ->get();
 

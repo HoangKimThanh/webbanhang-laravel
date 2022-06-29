@@ -1,5 +1,9 @@
 @extends('layouts.main')
 
+@section('title')
+    Thông tin cá nhân
+@endsection
+
 @section('content')
     <div class="main">
         <div class="profile">

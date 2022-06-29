@@ -30,9 +30,12 @@ class ProductController extends Controller
 
     public function show(Request $request)
     {
-        $product = Product::find($request->product_id);
-        $reviews = Review::whereStatus(1)->get();
-        
+        $productId = $request->product_id;
+        $product = Product::find($productId);
+        $reviews = Review::whereStatus(1)
+            ->whereProductId($productId)
+            ->get();
+
         return view('pages.product-detail', data: [
             'product' => $product,
             'reviews' => $reviews

@@ -1,5 +1,9 @@
 @extends('layouts.main')
 
+@section('title')
+    {{ $product->name }}
+@endsection
+
 @section('content')
     <div class="main">
         <div class="grid wide">
@@ -76,9 +80,26 @@
                 <div class="col l-12 m-12 c-12">
                     <div class="review">
                         @if (count($reviews) > 0)
-                        <h2>ĐÁNH GIÁ</h2>
+                            <h2>ĐÁNH GIÁ</h2>
                             <ul class="list-reviews">
-                                @if(Session::has('tmpReview'))
+                                @foreach ($reviews as $review)
+                                    <li>
+                                        <div class="head_review">
+                                            <div class="user">
+                                                <h3>@ <span>{{ $review->user_name }}</span></h3>
+                                            </div>
+                                            <div class="time">
+                                                {{ $review->created_at }}
+                                            </div>
+                                        </div>
+                                        <div class="body_review">
+                                            <p class="review_content">
+                                                {{ $review->content }}
+                                            </p>
+                                        </div>
+                                    </li>
+                                @endforeach
+                                @if (Session::has('tmpReview'))
                                     @php
                                         $tmpReview = Session::get('tmpReview');
                                     @endphp
@@ -97,23 +118,6 @@
                                         </div>
                                     </li>
                                 @endif
-                                @foreach ($reviews as $review)
-                                    <li>
-                                        <div class="head_review">
-                                            <div class="user">
-                                                <h3>@ <span>{{ $review->user_name }}</span></h3>
-                                            </div>
-                                            <div class="time">
-                                                {{ $review->created_at }}
-                                            </div>
-                                        </div>
-                                        <div class="body_review">
-                                            <p class="review_content">
-                                                {{ $review->content }}
-                                            </p>
-                                        </div>
-                                    </li>
-                                @endforeach
                             </ul>
                         @endif
                         <form method="post" id="form" action={{ route('reviews.store') }}>

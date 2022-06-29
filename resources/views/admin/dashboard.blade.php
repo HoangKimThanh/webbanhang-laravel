@@ -1,5 +1,9 @@
 @extends('admin.layouts.main')
 
+@section('title')
+    Dashboard
+@endsection
+
 @section('content')
     <main>
         <div class="container-fluid px-4">

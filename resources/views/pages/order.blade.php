@@ -1,5 +1,9 @@
 @extends('layouts.main')
 
+@section('title')
+    Đặt hàng
+@endsection
+
 @section('content')
     <div class="main">
         <div class="order-1">

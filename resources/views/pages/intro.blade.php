@@ -1,5 +1,9 @@
 @extends('layouts.main')
 
+@section('title')
+    Giới thiệu
+@endsection
+
 @section('content')
     <div class="main">
         <div class="intro">

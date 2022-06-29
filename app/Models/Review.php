@@ -22,9 +22,9 @@ class Review extends Model
     public static function getReviewsWithProductName($status)
     {
         $reviews = DB::table('reviews')
-        ->join('products', 'reviews.product_id', '=', 'products.id')
-        ->where('reviews.status', '=', $status)
-        ->get(DB::raw('reviews.*, products.name as product_name'));
+            ->join('products', 'reviews.product_id', '=', 'products.id')
+            ->where('reviews.status', '=', $status)
+            ->get(DB::raw('reviews.*, products.name as product_name'));
 
         return $reviews;
     }

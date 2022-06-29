@@ -1,5 +1,9 @@
 @extends('layouts.main')
 
+@section('title')
+    Tra cứu hóa đơn
+@endsection
+
 @section('content')
     <div class="main">
         <div class="row">

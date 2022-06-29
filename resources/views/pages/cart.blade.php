@@ -1,5 +1,9 @@
 @extends('layouts.main')
 
+@section('title')
+    Giỏ hàng
+@endsection
+
 @section('content')
     <div class="main">
         <div class="cart">

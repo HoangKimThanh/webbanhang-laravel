@@ -1,5 +1,9 @@
 @extends('admin.layouts.main')
 
+@section('title')
+    Khách hàng
+@endsection
+
 @section('content')
     <h1 style="text-align: center;">Danh sách khách hàng</h1>
     <table>

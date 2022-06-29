@@ -1,5 +1,9 @@
 @extends('admin.layouts.main')
 
+@section('title')
+    Tài khoản
+@endsection
+
 @section('content')
     <div class="profile">
         @if (session()->has('success'))

@@ -1,5 +1,9 @@
 @extends('layouts.main')
 
+@section('title')
+    Đăng nhập
+@endsection
+
 @section('content')
     <div class="main">
         <div class="sign signin">

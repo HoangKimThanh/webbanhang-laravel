@@ -1,5 +1,9 @@
 @extends('layouts.main')
 
+@section('title')
+    Tìm kiếm sản phẩm
+@endsection
+
 @section('content')
     <div class="container">
         <div class="main">
