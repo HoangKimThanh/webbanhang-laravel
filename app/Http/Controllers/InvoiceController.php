@@ -21,7 +21,7 @@ class InvoiceController extends Controller
      */
     public function index()
     {
-        $invoices = Invoice::all();
+        $invoices = Invoice::get();
 
         return view('admin.invoices.index', ['invoices' => $invoices]);
     }
