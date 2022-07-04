@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
-use App\Services\UrlService;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class Category extends Model
 {
@@ -20,7 +20,7 @@ class Category extends Model
 
     public function setUrlAttribute($value)
     {
-        $this->attributes['url'] = UrlService::makeUrl($this->attributes['name']);
+        $this->attributes['url'] = Str::slug($this->attributes['name']);
     }
 
     public static function getTotalPerCategory()

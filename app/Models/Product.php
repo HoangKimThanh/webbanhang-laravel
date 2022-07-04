@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
-use App\Services\UrlService;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class Product extends Model
 {
@@ -28,7 +28,7 @@ class Product extends Model
 
     public function setUrlAttribute($value)
     {
-        $this->attributes['url'] = UrlService::makeUrl($this->attributes['name']);
+        $this->attributes['url'] = Str::slug($this->attributes['name']);
     }
 
     public function setFeaturedAttribute($value)
@@ -39,11 +39,6 @@ class Product extends Model
     public function getImagesDescriptionAttribute()
     {
         return explode(' ', $this->attributes['images_description']);
-    }
-
-    public function getUrlProductAttribute()
-    {
-        return UrlService::makeUrl($this->name);
     }
 
     public static function getWithCategory()

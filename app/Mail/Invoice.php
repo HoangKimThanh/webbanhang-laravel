@@ -32,7 +32,7 @@ class Invoice extends Mailable
      */
     public function build()
     {
-        return $this->subject('Cảm ơn quý khách đã đặt hàng tại PhuKienUIT')
+        return $this->subject('Cảm ơn quý khách đã đặt hàng tại PhuKienHKT')
             ->view('mails.invoice');
     }
 }
